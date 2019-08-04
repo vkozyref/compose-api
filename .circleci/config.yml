@@ -10,7 +10,7 @@ jobs:
           command: 
             dotnet restore web-api.sln
       - run:
-          name: Restore packages
+          name: Build app
           command: 
             dotnet build --no-restore web-api.sln
       - run:
