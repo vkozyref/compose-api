@@ -53,6 +53,7 @@ namespace web_api
 
             app.UseHttpsRedirection();
             app.UseMiddleware<ExceptionHandlingMiddleware>();
+            app.UseMiddleware<CorrelationMiddleware>();
             app.UseMvc();
         }
     }
