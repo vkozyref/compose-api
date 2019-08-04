@@ -8,11 +8,11 @@ jobs:
       - run:
           name: Restore packages
           command: 
-            dotnet restore
+            dotnet restore web-api.sln
       - run:
           name: Restore packages
           command: 
-            dotnet build --no-restore
+            dotnet build --no-restore web-api.sln
       - run:
           name: Running tests
           command: 
