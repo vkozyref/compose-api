@@ -11,7 +11,8 @@ namespace web_api.database
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql("Host=db;Port=5432;Database=web-api-storage;Username=bloguser;Password=bloguser");
+            var connectionString = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+            optionsBuilder.UseNpgsql(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

@@ -6,38 +6,40 @@ networks:
 services:
   flyway:
     image: boxfuse/flyway:5.2.4
-    command: -url=jdbc:postgresql://db:5432/web-api-storage -user=bloguser -locations=filesystem:/flyway/sql -password=bloguser -connectRetries=10 migrate
-    volumes:
-      - ./migrations:/flyway/sql
+    command: -url=jdbc:postgresql://db:5432/web-api-storage -user=${PG_USER} -locations=filesystem:/flyway/sql -password=${PG_PWD} -connectRetries=10 migrate
     depends_on:
       - db
+    volumes:
+      - ${MIGRATIONS_PATH}:/flyway/sql 
     networks:
       - dev-env
   db:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: "bloguser"
-      POSTGRES_PASSWORD: "bloguser"
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PWD}
       POSTGRES_DB: "web-api-storage"
     ports:
-      - "5433:5432"
+      - "5432"
     volumes:
       - database_data_volume:/var/lib/postgresql/data
     networks:
       - dev-env
   web-api:
-    image: ${DOCKER_REGISTRY-}webapi
-    build:
-      context: .
-      dockerfile: web-api/Dockerfile
+    image: kozyriev/${IMAGE_NAME}
+    ports:
+      - "0:80"
+      - "44338:443"
     depends_on:
       - db
       - flyway
     environment:
-      DB_CONNECTION_STRING: "host=db;port=5432;database=web-api-storage;username=bloguser;password=bloguser"
+      - ASPNETCORE_ENVIRONMENT=${ENV}
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_HTTPS_PORT=443
+      - DB_CONNECTION_STRING=host=db;port=5432;database=web-api-storage;username=${PG_USER};password=${PG_PWD}
     networks:
       - dev-env
 volumes:
   database_data_volume:
-  migrations:

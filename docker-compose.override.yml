@@ -1,14 +1,27 @@
 version: '3.4'
 
 services:
+  flyway:
+    command: -url=jdbc:postgresql://db:5432/web-api-storage -user=bloguser -locations=filesystem:/flyway/sql -password=bloguser -connectRetries=10 migrate
+    volumes:
+      - ./migrations:/flyway/sql 
+  db:
+    environment:
+      POSTGRES_USER: "bloguser"
+      POSTGRES_PASSWORD: "bloguser"
+      POSTGRES_DB: "web-api-storage"
+    ports:
+      - "5433:5432"
   web-api:
+    image: ${DOCKER_REGISTRY-}webapi
+    build:
+      context: .
+      dockerfile: web-api/Dockerfile
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_HTTPS_PORT=44338
-    ports:
-      - "0:80"
-      - "44338:443"
+      - DB_CONNECTION_STRING=host=db;port=5432;database=web-api-storage;username=bloguser;password=bloguser
     volumes:
       - ~/.aspnet/https:/root/.aspnet/https:ro
       - ~/.microsoft/usersecrets:/root/.microsoft/usersecrets:ro
