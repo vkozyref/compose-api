@@ -1,0 +1,36 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web-api", "web-api\web-api.csproj", "{ADAF71C7-80EB-4EDD-80FB-29898B5A6968}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{90543032-0F2C-4079-81C9-FA2FBB35DCB3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web-api.database", "web-api.database\web-api.database.csproj", "{21E649E6-6918-4EFC-B595-C46877AEA1D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "migrations", "migrations", "{A49433AD-9B0E-4806-AC15-7DC458C5CD34}"
+	ProjectSection(SolutionItems) = preProject
+		migrations\V1_1__InitialMigration.sql = migrations\V1_1__InitialMigration.sql
+		migrations\V1_2__RemoveTestTable.sql = migrations\V1_2__RemoveTestTable.sql
+		migrations\V1_3__CreateProductTable.sql = migrations\V1_3__CreateProductTable.sql
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ADAF71C7-80EB-4EDD-80FB-29898B5A6968}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADAF71C7-80EB-4EDD-80FB-29898B5A6968}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADAF71C7-80EB-4EDD-80FB-29898B5A6968}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADAF71C7-80EB-4EDD-80FB-29898B5A6968}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90543032-0F2C-4079-81C9-FA2FBB35DCB3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90543032-0F2C-4079-81C9-FA2FBB35DCB3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90543032-0F2C-4079-81C9-FA2FBB35DCB3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90543032-0F2C-4079-81C9-FA2FBB35DCB3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21E649E6-6918-4EFC-B595-C46877AEA1D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E649E6-6918-4EFC-B595-C46877AEA1D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E649E6-6918-4EFC-B595-C46877AEA1D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E649E6-6918-4EFC-B595-C46877AEA1D0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
