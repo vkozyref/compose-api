@@ -1,0 +1,19 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: mcr.microsoft.com/dotnet/core/sdk:2.2.6-stretch
+    steps:
+      - checkout
+      - run:
+          name: Restore packages
+          command: 
+            dotnet restore
+      - run:
+          name: Restore packages
+          command: 
+            dotnet build --no-restore
+      - run:
+          name: Running tests
+          command: 
+            dotnet test web-api.sln -c Release

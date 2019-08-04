@@ -28,6 +28,7 @@ services:
       - dev-env
   web-api:
     image: kozyriev/${IMAGE_NAME}
+    restart: always
     ports:
       - "0:80"
       - "44338:443"
