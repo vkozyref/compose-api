@@ -50,8 +50,7 @@ workflows:
       - build
           filters:
             branches:
-              ignore:
-                - master
+              ignore: master
   commit:
     jobs:
       - docker-build:
