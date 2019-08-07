@@ -51,8 +51,6 @@ workflows:
   commit:
     jobs:
       - docker-build:
-          requires:
-            - build
           filters:
             branches:
               only: master
