@@ -23,7 +23,8 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
-      - setup_remote_docker  
+      - setup_remote_docker
+      - checkout
       - run:
           name: Prepare Dockerfile
           command:
@@ -38,7 +39,7 @@ jobs:
     docker:
       - image: circleci/buildpack-deps:stretch
     steps:
-      - setup_remote_docker  
+      - setup_remote_docker
       - run:
           name: Docker image publish
           command: |
