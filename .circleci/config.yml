@@ -33,18 +33,12 @@ jobs:
           name: Docker image build
           command:
             docker build . -t $IMAGE_NAME:$CIRCLE_BUILD_NUM
-  docker-publish:
-    environment:
-      IMAGE_NAME: kozyriev/super-api
-    docker:
-      - image: circleci/buildpack-deps:stretch
-    steps:
-      - setup_remote_docker
       - run:
           name: Docker image publish
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             docker push $IMAGE_NAME:$CIRCLE_BUILD_NUM
+
 
       
 
@@ -60,12 +54,6 @@ workflows:
   commit:
     jobs:
       - docker-build:
-          filters:
-            branches:
-              only: master
-      - docker-publish:
-          requires:
-            - docker-build
           filters:
             branches:
               only: master
