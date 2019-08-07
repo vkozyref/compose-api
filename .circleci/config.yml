@@ -47,10 +47,11 @@ workflows:
   version: 2
   pull:
     jobs: 
-      - build
-          branches:
-            ignore: 
-              - master
+      - build:
+          filters:
+            branches:
+              ignore: 
+                - master
   commit:
     jobs:
       - docker-build:
