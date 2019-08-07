@@ -48,9 +48,9 @@ workflows:
   pull:
     jobs: 
       - build
-          filters:
-            branches:
-              ignore: master
+          branches:
+            ignore: 
+              - master
   commit:
     jobs:
       - docker-build:
